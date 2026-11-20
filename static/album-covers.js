@@ -23,6 +23,7 @@ async function showAlbumCovers() {
   const slideshow = document.createElement("div");
   slideshow.className = "album-covers";
   const dissolveDuration = 4200;
+  const firstCoverInterval = 4500;
   const coverInterval = 8000;
   slideshow.style.setProperty("--album-dissolve-duration", `${dissolveDuration}ms`);
   slideshow.insertAdjacentHTML("beforeend", `
@@ -37,6 +38,7 @@ async function showAlbumCovers() {
 
   let current, next;
   let timer;
+  let firstCover = true;
   let index = 0;
   const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
 
@@ -92,6 +94,7 @@ async function showAlbumCovers() {
       return;
     }
 
+    firstCover = false;
     image.getBoundingClientRect();
     outgoing.setAttribute("aria-hidden", "true");
     outgoing.classList.replace("visible", "outgoing");
@@ -112,6 +115,7 @@ async function showAlbumCovers() {
       if (next.image) show(next.image);
       preload();
     }
+    timer = setTimeout(advance, coverInterval);
   }
 
   for (let attempts = 0; attempts < covers.length; attempts++) {
@@ -125,12 +129,12 @@ async function showAlbumCovers() {
       playback.textContent = "Play slideshow";
 
       function setPlaying(playing) {
-        clearInterval(timer);
+        clearTimeout(timer);
         slideshow.classList.toggle("is-playing", playing);
         if (playing) {
           playback.remove();
           if (!next) preload();
-          timer = setInterval(advance, coverInterval);
+          timer = setTimeout(advance, firstCover ? firstCoverInterval : coverInterval);
         } else {
           slideshow.append(playback);
         }
