@@ -1,0 +1,48 @@
+---
+title: Research
+body-classes: research
+---
+
+## Papers
+
+<article class="paper">
+<h3>Is Information Density Uniform when Utterances are Grounded on Perception and Discourse? <span class="paper__links"><a href="../static/papers/grounded-information-density.pdf">PDF</a><span aria-hidden="true">·</span><a href="https://aclanthology.org/2026.eacl-long.178/">ACL Anthology</a></span></h3>
+<p class="paper__authors">Matteo Gay, Coleman Haley, Mario Giulianelli, Edoardo M. Ponti</p>
+<p class="paper__meta">2026 · EACL</p>
+</article>
+
+<article class="paper">
+<h3>The Cross-linguistic Role of Animacy in Grammar Structures <span class="paper__links"><a href="../static/papers/animacy-grammar-structures.pdf">PDF</a><span aria-hidden="true">·</span><a href="https://aclanthology.org/2025.acl-long.364/">ACL Anthology</a></span></h3>
+<p class="paper__authors">Nina Gregorio&#42;, Matteo Gay&#42;, Sharon Goldwater, Edoardo M. Ponti</p>
+<p class="paper__equal-authors">&#42; Equal first authors.</p>
+<p class="paper__meta">2025 · ACL · 🏆 SAC Highlight Award</p>
+</article>
+
+## News
+
+
+<article class="news-item">
+<time datetime="YYYY-MM-DD">2026-01-11</time>
+<p>I started my PhD at the University of Trento.</p>
+</article>
+
+<article class="news-item">
+<time datetime="YYYY-MM-DD">2026-10-09</time>
+<p>Having defended my thesis, “Byte-Level Language Modelling and Adaptive Tokenisation for Multilingual Fairness”, written under the supervision of [Miryam de Lhoneux](https://people.cs.kuleuven.be/~miryam.delhoneux/) and [Pieter Delobelle](https://pieter.ai/), I have now officially graduated from the Master’s in AI at KU Leuven <i>cum laude</i>.</p>
+</article>
+
+<article class="news-item">
+<time datetime="YYYY-MM-DD">2026-24-03</time>
+<p>From 24 to 29 March I'll be at [EACL](https://2026.eacl.org/) (European Chapter of the Association for Computational Linguistics) in Rabat (Morocco) to present our paper ''Is Information Density Uniform when Utterances are Grounded on Perception and Discourse?''.</p>
+</article>
+
+<article class="news-item">
+<time datetime="YYYY-MM-DD">2025-09-12</time>
+<p>I am starting a one-year Advanced Master's in Artificial Intelligence (Engineering and Computer Science track) at KU Leuven (Belgium).</p>
+</article>
+
+<article class="news-item">
+<time datetime="YYYY-MM-DD">2025-08-01</time>
+<p>The paper "The Cross-linguistic Role of Animacy in Grammar Structures", which I co-authored with Nina Gregorio as joint first author, won a [Senior Area Chair Award](https://2025.aclweb.org/program/awards/) at ACL in Vienna.\
+The icing on the cake of my research stay at the School of Informatics in Edinburgh!</p>
+</article>

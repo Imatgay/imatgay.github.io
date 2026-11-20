@@ -1,0 +1,12 @@
+---
+title: "Bites & Thoughts"
+body-classes: writing
+---
+
+[... work in progress ...]{.section-status .section-status-lead}
+
+A blogpost on distorted voices in the history of music. ~ [Coming soon.]{.section-status}
+
+```{=html}
+<script src="/static/album-covers.js" defer></script>
+```

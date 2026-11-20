@@ -1,0 +1,26 @@
+project:
+  type: website
+  output-dir: public
+  render:
+    - "*.qmd"
+    - "*/index.qmd"
+    - "*/*/index.qmd"
+  resources:
+    - static
+
+website:
+  title: "Matteo Gay"
+  site-url: "https://imatgay.github.io"
+  description: "Matteo Gay's personal website: research, writing and technical notes."
+  search: false
+
+format:
+  html:
+    theme: litera
+    css: static/css/style.css
+    include-before-body: static/personal-frame.html
+    toc: false
+    anchor-sections: false
+    smooth-scroll: true
+
+draft-mode: gone

@@ -1,0 +1,24 @@
+---
+body-classes: home
+---
+
+::: {.home-presentation}
+Hi, I am Matteo!\
+
+I am a first-year PhD student at the [Center for Mind and Brain Sciences (CIMeC), University of Trento](https://www.cimec.unitn.it/en).\
+Previously, I got an Advanced MSc in AI from KULeuven and a MA in Linguistics (computational) from University of Pavia.\
+To know more about my background, check my [CV](static/cv.pdf).
+
+My doctoral research focuses on language acquisition in machines and humans, the
+learning dynamics of language models, and the alignment between artificial
+neural circuits and human neural activation.\
+To do so, I combine methods from machine learning, neural network interpretability, linguistics and cognitive neurosciences.
+
+Feel free to contact me to discuss any related topic.
+
+## Here you can find
+
+- [Research](research/): papers, preprints and news about my work.
+- [Bites & Thoughts](writing/): short posts about ideas (_thoughts_) or stories (_bites_) that I find worth sharing. [IN PROGRESS]{.section-status}
+- [My Bookshelf](bookshelf/): an attempt to record all the books I have read and different sources of inspiration. [IN PROGRESS]{.section-status}
+:::

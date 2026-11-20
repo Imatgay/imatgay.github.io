@@ -1,0 +1,14 @@
+/public/
+/.quarto/
+/.local-backup/
+/.claude/
+/.codex/
+/.agents/
+/.aws/
+.DS_Store
+.env
+.env.*
+__pycache__/
+*.quarto_ipynb
+
+**/*.quarto_ipynb
