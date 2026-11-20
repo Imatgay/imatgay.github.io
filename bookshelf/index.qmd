@@ -7,7 +7,7 @@ body-classes: bookshelf
 
 ```{=html}
 <figure id="bookshelf-illustration" class="sidebar-figure">
-  <img class="manuscript-image" src="../static/imgs/ezechiele-eating.png" width="1068" height="1198"
+  <img class="manuscript-image" src="../static/imgs/ezechiele-eating.webp" width="1068" height="1198" fetchpriority="high"
        alt="Manuscript illumination of Ezekiel eating the book">
   <figcaption>
     Ézéchiel eating the Book · Latin 16744 <br>

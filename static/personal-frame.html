@@ -24,18 +24,19 @@ html[data-darkreader-scheme="dark"] .mobile-nav { border-bottom-color: #b45e69 !
   new MutationObserver(() => requestAnimationFrame(() => document.head.append(gridColours)))
     .observe(document.documentElement, { attributes: true, attributeFilter: ["data-darkreader-scheme"] });
 
+  const mobileLayout = matchMedia("(max-width: 48rem), (max-height: 32rem) and (pointer: coarse)");
+
   function placePageFigure(figure) {
-    const mobile = matchMedia("(max-width: 48rem), (max-height: 32rem) and (pointer: coarse)");
     const content = document.getElementById("quarto-document-content");
     const contact = document.querySelector(".personal-links");
 
     function updatePlacement() {
-      if (mobile.matches) content.append(figure);
+      if (mobileLayout.matches) content.append(figure);
       else contact.before(figure);
     }
 
     updatePlacement();
-    mobile.addEventListener("change", updatePlacement);
+    mobileLayout.addEventListener("change", updatePlacement);
   }
 </script>
 

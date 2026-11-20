@@ -36,6 +36,7 @@ async function showAlbumCovers() {
   figure.append(slideshow, caption);
 
   let current, next;
+  let timer;
   let index = 0;
   const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
 
@@ -66,13 +67,16 @@ async function showAlbumCovers() {
     const image = new Image();
     image.alt = cover.title;
     const original = cover.image.replace(/(\/i\/u\/)\d+x\d+\//, "$1");
-    for (const source of new Set([original, cover.image])) {
+    const sources = mobileLayout.matches && document.fullscreenElement !== slideshow
+      ? [cover.image, original]
+      : [original, cover.image];
+    for (const source of new Set(sources)) {
       image.src = source;
       try {
         await image.decode();
         return image;
       } catch {
-        // Try the thumbnail before skipping unavailable artwork.
+        // Try the other size before skipping unavailable artwork.
       }
     }
     return null;
@@ -104,21 +108,38 @@ async function showAlbumCovers() {
   }
 
   function advance() {
-    if (reducedMotion.matches) return;
     if (next.ready) {
       if (next.image) show(next.image);
       preload();
     }
-    setTimeout(advance, coverInterval);
   }
 
   for (let attempts = 0; attempts < covers.length; attempts++) {
     const image = await loadNext();
     if (!image) continue;
     show(image);
-    if (covers.length > 1 && !reducedMotion.matches) {
-      preload();
-      setTimeout(advance, coverInterval);
+    if (covers.length > 1) {
+      const playback = document.createElement("button");
+      playback.className = "album-playback";
+      playback.type = "button";
+
+      function setPlaying(playing) {
+        clearInterval(timer);
+        timer = undefined;
+        if (playing) {
+          if (!next) preload();
+          timer = setInterval(advance, coverInterval);
+        }
+        slideshow.classList.toggle("is-playing", playing);
+        playback.classList.toggle("paused", !playing);
+        playback.textContent = playing ? "Pause" : "Play slideshow";
+        playback.setAttribute("aria-label", playing ? "Pause album slideshow" : "Play slideshow");
+      }
+
+      playback.addEventListener("click", () => setPlaying(timer === undefined));
+      reducedMotion.addEventListener("change", () => setPlaying(!reducedMotion.matches));
+      slideshow.append(playback);
+      setPlaying(!reducedMotion.matches);
     }
     break;
   }
