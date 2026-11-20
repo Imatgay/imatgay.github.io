@@ -1,1 +1,1 @@
-My personal website, built with quarto.
+My personal website, built with Quarto.
