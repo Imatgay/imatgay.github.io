@@ -1,6 +1,9 @@
 ---
 title: Bookshelf
 body-classes: bookshelf
+include-in-header:
+  text: |
+    <link rel="preload" as="image" href="../static/imgs/ezechiele-eating.webp" fetchpriority="high">
 ---
 
 [... work in progress ...]{.section-status .section-status-lead}
@@ -15,6 +18,13 @@ body-classes: bookshelf
   </figcaption>
 </figure>
 <script>
-  placePageFigure(document.getElementById("bookshelf-illustration"));
+  const illustration = document.getElementById("bookshelf-illustration");
+  const image = illustration.querySelector("img");
+  if (image.decode) {
+    image.style.visibility = "hidden";
+    const reveal = () => image.style.removeProperty("visibility");
+    image.decode().then(reveal, reveal);
+  }
+  placePageFigure(illustration);
 </script>
 ```

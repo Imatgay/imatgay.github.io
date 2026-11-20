@@ -122,23 +122,22 @@ async function showAlbumCovers() {
       const playback = document.createElement("button");
       playback.className = "album-playback";
       playback.type = "button";
+      playback.textContent = "Play slideshow";
 
       function setPlaying(playing) {
         clearInterval(timer);
-        timer = undefined;
+        slideshow.classList.toggle("is-playing", playing);
         if (playing) {
+          playback.remove();
           if (!next) preload();
           timer = setInterval(advance, coverInterval);
+        } else {
+          slideshow.append(playback);
         }
-        slideshow.classList.toggle("is-playing", playing);
-        playback.classList.toggle("paused", !playing);
-        playback.textContent = playing ? "Pause" : "Play slideshow";
-        playback.setAttribute("aria-label", playing ? "Pause album slideshow" : "Play slideshow");
       }
 
-      playback.addEventListener("click", () => setPlaying(timer === undefined));
+      playback.addEventListener("click", () => setPlaying(true));
       reducedMotion.addEventListener("change", () => setPlaying(!reducedMotion.matches));
-      slideshow.append(playback);
       setPlaying(!reducedMotion.matches);
     }
     break;
