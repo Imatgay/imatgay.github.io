@@ -7,12 +7,14 @@ function shuffleCovers(covers) {
   return shuffled;
 }
 
-async function showAlbumCovers() {
-  const response = await fetch("./album-covers.json");
-  if (!response.ok) return;
-  const covers = shuffleCovers(await response.json());
-  if (!covers.length) return;
+function albumCoverSources(cover, fullscreen = false) {
+  const original = cover.image.replace(/(\/i\/u\/)\d+x\d+\//, "$1");
+  return mobileLayout.matches && !fullscreen
+    ? [cover.image, original]
+    : [original, cover.image];
+}
 
+async function showAlbumCovers(covers) {
   const figure = document.createElement("figure");
   figure.className = "sidebar-figure";
   const caption = document.createElement("figcaption");
@@ -68,10 +70,7 @@ async function showAlbumCovers() {
     index = (index + 1) % covers.length;
     const image = new Image();
     image.alt = cover.title;
-    const original = cover.image.replace(/(\/i\/u\/)\d+x\d+\//, "$1");
-    const sources = mobileLayout.matches && document.fullscreenElement !== slideshow
-      ? [cover.image, original]
-      : [original, cover.image];
+    const sources = albumCoverSources(cover, document.fullscreenElement === slideshow);
     for (const source of new Set(sources)) {
       image.src = source;
       try {
@@ -148,6 +147,42 @@ async function showAlbumCovers() {
   }
 }
 
-showAlbumCovers().catch(() => {
-  // The writing page remains usable if the cover feed is unavailable.
-});
+const writingPage = document.body.classList.contains("writing");
+
+async function prepareAlbumCovers() {
+  const response = await fetch("/writing/album-covers.json");
+  if (!response.ok) return;
+  const covers = shuffleCovers(await response.json());
+  if (!covers.length) return;
+
+  const storageKey = "first-album-cover";
+  try {
+    const savedCover = sessionStorage.getItem(storageKey);
+    const index = covers.findIndex(cover => cover.image === savedCover);
+    if (index > 0) [covers[0], covers[index]] = [covers[index], covers[0]];
+    if (writingPage) sessionStorage.removeItem(storageKey);
+    else sessionStorage.setItem(storageKey, covers[0].image);
+  } catch {
+    if (!writingPage) return;
+  }
+
+  if (writingPage) {
+    await showAlbumCovers(covers);
+  } else {
+    const [source] = albumCoverSources(covers[0]);
+    const image = new Image();
+    image.fetchPriority = "low";
+    image.src = source;
+  }
+}
+
+function loadPageCovers() {
+  prepareAlbumCovers().catch(() => {
+    // The site remains usable if the cover feed is unavailable.
+  });
+}
+
+if (writingPage) loadPageCovers();
+else if (!navigator.connection?.saveData) {
+  window.addEventListener("load", loadPageCovers, { once: true });
+}
