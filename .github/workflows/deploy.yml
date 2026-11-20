@@ -33,8 +33,10 @@ jobs:
         env:
           LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
         run: |
-          if [ -n "$LASTFM_API_KEY" ]; then
-            python3 scripts/lastfm-covers.py || echo "::warning::Last.fm covers could not be refreshed."
+          if [ -z "$LASTFM_API_KEY" ]; then
+            echo "::warning::LASTFM_API_KEY is missing. Using saved album covers."
+          else
+            python3 scripts/lastfm-covers.py || echo "::warning::Last.fm covers could not be refreshed. Using saved album covers."
           fi
 
       - name: Upload artifact

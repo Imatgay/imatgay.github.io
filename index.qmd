@@ -7,7 +7,7 @@ Hi, I am Matteo!\
 
 I am a first-year PhD student at the [Center for Mind and Brain Sciences (CIMeC), University of Trento](https://www.cimec.unitn.it/en).\
 Previously, I got an Advanced MSc in AI from KULeuven and a MA in Linguistics (computational) from University of Pavia.\
-To know more about my background, check my [CV](https://drive.google.com/file/d/REPLACE_WITH_CV_FILE_ID/view).
+To know more about my background, check my [CV](https://drive.google.com/file/d/19AfbZedNDgMCVKHW731MVcd7uhnyCEy1/view?usp=sharing).
 
 My doctoral research focuses on language acquisition in machines and humans, the
 learning dynamics of language models, and the alignment between artificial
