@@ -24,6 +24,14 @@ html[data-darkreader-scheme="dark"] .mobile-nav { border-bottom-color: #b45e69 !
   new MutationObserver(() => requestAnimationFrame(() => document.head.append(gridColours)))
     .observe(document.documentElement, { attributes: true, attributeFilter: ["data-darkreader-scheme"] });
 
+  window.addEventListener("load", () => {
+    if (document.body.classList.contains("bookshelf") || navigator.connection?.saveData) return;
+
+    const illustration = new Image();
+    illustration.fetchPriority = "low";
+    illustration.src = "/static/imgs/ezechiele-eating.webp";
+  }, { once: true });
+
   const mobileLayout = matchMedia("(max-width: 48rem), (max-height: 32rem) and (pointer: coarse)");
 
   function placePageFigure(figure) {
