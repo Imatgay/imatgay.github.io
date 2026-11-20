@@ -11,11 +11,28 @@ html[data-darkreader-scheme="dark"] body::after {
   background: #b45e69 !important;
   mix-blend-mode: normal !important;
 }
+
+html[data-darkreader-scheme="dark"] .personal-name { border-bottom-color: #61989a !important; }
+html[data-darkreader-scheme="dark"] .mobile-nav { border-bottom-color: #b45e69 !important; }
 </style>
 <script>
   const gridColours = document.getElementById("darkreader-grid-colours");
   new MutationObserver(() => requestAnimationFrame(() => document.head.append(gridColours)))
     .observe(document.documentElement, { attributes: true, attributeFilter: ["data-darkreader-scheme"] });
+
+  function placePageFigure(figure) {
+    const mobile = matchMedia("(max-width: 48rem), (max-height: 32rem) and (pointer: coarse)");
+    const content = document.getElementById("quarto-document-content");
+    const contact = document.querySelector(".personal-links");
+
+    function updatePlacement() {
+      if (mobile.matches) content.append(figure);
+      else contact.before(figure);
+    }
+
+    updatePlacement();
+    mobile.addEventListener("change", updatePlacement);
+  }
 </script>
 
 <aside class="personal-frame" aria-label="Profile and navigation">
@@ -23,13 +40,19 @@ html[data-darkreader-scheme="dark"] body::after {
     <a href="/">Matteo Gay</a>
   </header>
 
+  <nav class="mobile-nav" aria-label="Website sections">
+    <a href="/research/">Research</a>
+    <a href="/writing/">Bites &amp; Thoughts</a>
+    <a href="/bookshelf/">Bookshelf</a>
+  </nav>
+
   <div class="personal-panel">
     <img class="personal-portrait"
          src="/static/imgs/pw-image.jpeg"
          alt="Portrait of Matteo Gay">
 
     <section class="personal-links" aria-label="Contact">
-      <a href="mailto:matteo.gay@unitn.it"><svg class="contact-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18v14H3V5Zm1.8 2L12 12.1 19.2 7H4.8Zm14.4 10V9.2L12 14.1 4.8 9.2V17h14.4Z"/></svg><span class="contact-label">Email: <code>matteo.gay*AT*unitn.it</code></span></a>
+      <a href="mailto:matteo.gay@unitn.it"><svg class="contact-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18v14H3V5Zm1.8 2L12 12.1 19.2 7H4.8Zm14.4 10V9.2L12 14.1 4.8 9.2V17h14.4Z"/></svg><span class="contact-label">Email<span class="email-address">: <code>matteo.gay*AT*unitn.it</code></span></span></a>
       <a href="https://scholar.google.com/citations?user=Z-PAL8EAAAAJ&amp;hl=it"><svg class="contact-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 2 8.5l10 5.4 8-4.3v6.1h2V8.5L12 3Zm-5 9.1v4.3c3.1 2.1 6.9 2.1 10 0v-4.3L12 14.8 7 12.1Z"/></svg><span class="contact-label">Google Scholar</span></a>
       <!-- <a href="https://www.unitn.it/"><svg class="contact-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21h18v-2H3v2Zm2-3h3V9H5v9Zm5 0h4V9h-4v9Zm6 0h3V9h-3v9ZM2 7h20L12 2 2 7Z"/></svg>UniTrento Profile</a> -->
       <a href="https://github.com/Imatgay"><svg class="contact-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.8c-2.8.6-3.4-1.2-3.4-1.2-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.4 1.1 2.9.8.1-.6.4-1.1.6-1.3-2.3-.3-4.7-1.1-4.7-5a3.9 3.9 0 0 1 1-2.7c-.1-.3-.4-1.3.1-2.7 0 0 .8-.3 2.8 1.1a9.7 9.7 0 0 1 5 0c2-1.4 2.8-1.1 2.8-1.1.5 1.4.2 2.4.1 2.7a3.9 3.9 0 0 1 1 2.7c0 3.9-2.4 4.7-4.7 5 .4.3.7 1 .7 1.9V21c0 .3.2.6.7.5A10 10 0 0 0 12 2Z"/></svg><span class="contact-label">GitHub</span></a>

@@ -84,7 +84,7 @@ async function showAlbumCovers() {
     slideshow.append(image);
     if (!outgoing) {
       image.classList.add("visible");
-      document.querySelector(".personal-links").before(figure);
+      placePageFigure(figure);
       return;
     }
 

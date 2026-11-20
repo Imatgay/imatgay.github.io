@@ -15,8 +15,6 @@ body-classes: bookshelf
   </figcaption>
 </figure>
 <script>
-  document.querySelector(".personal-links").before(
-    document.getElementById("bookshelf-illustration")
-  );
+  placePageFigure(document.getElementById("bookshelf-illustration"));
 </script>
 ```
