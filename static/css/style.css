@@ -59,7 +59,8 @@ body {
 }
 
 body::before,
-body::after {
+body::after,
+html::after {
   content: "";
   position: fixed;
   z-index: 1050;
@@ -67,15 +68,11 @@ body::after {
 }
 
 body::before {
-  z-index: 1051;
   left: var(--left-rail);
   top: 0;
   width: var(--band);
   height: 100vh;
-  background: linear-gradient(to bottom,
-    var(--vertical) 0 var(--top-row),
-    var(--intersection) var(--top-row) calc(var(--top-row) + var(--band)),
-    var(--vertical) calc(var(--top-row) + var(--band)) 100%);
+  background: var(--vertical);
 }
 
 body::after {
@@ -84,6 +81,16 @@ body::after {
   width: 100vw;
   height: var(--band);
   background: var(--horizontal);
+}
+
+/* A separate box snaps to the same pixel edges as the two bars. */
+html::after {
+  z-index: 1051;
+  left: var(--left-rail);
+  top: var(--top-row);
+  width: var(--band);
+  height: var(--band);
+  background: var(--intersection);
 }
 
 a {
@@ -569,7 +576,7 @@ body:not(.home) .personal-links .contact-label {
 
 @media (max-width: 48rem), (max-height: 32rem) and (pointer: coarse) {
   body { overflow: auto; }
-  body::before, body::after { display: none; }
+  body::before, body::after, html::after { display: none; }
 
   .personal-frame {
     position: relative;

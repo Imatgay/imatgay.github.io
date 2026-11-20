@@ -2,13 +2,17 @@
 
 <style id="darkreader-grid-colours" class="darkreader">
 html[data-darkreader-scheme="dark"] body::before {
-  z-index: 1051 !important;
-  background: linear-gradient(to bottom, #61989a 0 var(--top-row), #56454f var(--top-row) calc(var(--top-row) + var(--band)), #61989a calc(var(--top-row) + var(--band)) 100%) !important;
+  background: #61989a !important;
   mix-blend-mode: normal !important;
 }
 
 html[data-darkreader-scheme="dark"] body::after {
   background: #b45e69 !important;
+  mix-blend-mode: normal !important;
+}
+
+html[data-darkreader-scheme="dark"]::after {
+  background: #56454f !important;
   mix-blend-mode: normal !important;
 }
 
