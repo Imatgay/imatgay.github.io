@@ -25,10 +25,10 @@ def album_covers(albums):
         }:
             continue
         if album and artist and "2a96cbd8b46e442fc41c2b86b821562f" not in url.path:
-            # shortcut: manually select covers for pixelation while only one album needs it.
+            cover = {"title": f"{album} by {artist}", "image": image}
             if album.casefold() == "my beautiful dark twisted fantasy" and artist.casefold() == "kanye west":
-                image = "/static/my-beautiful-dark-twisted-fantasy-pixelated.png"
-            covers.setdefault((artist, album), {"title": f"{album} by {artist}", "image": image})
+                cover["pixelated"] = True
+            covers.setdefault((artist, album), cover)
     return list(covers.values())
 
 

@@ -479,7 +479,7 @@ body:not(.home) .personal-links .contact-label {
   background: #171715;
 }
 
-.album-covers img {
+.album-covers :is(img, canvas) {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -492,13 +492,15 @@ body:not(.home) .personal-links .contact-label {
     filter var(--album-dissolve-duration) ease-in-out;
 }
 
-.album-covers img.visible {
+.album-covers canvas { image-rendering: pixelated; }
+
+.album-covers .visible {
   --album-blur: 0px;
   z-index: 1;
   opacity: 1;
 }
 
-.album-covers img.outgoing { opacity: 1; }
+.album-covers .outgoing { opacity: 1; }
 
 .album-covers::after {
   content: "";
@@ -562,7 +564,7 @@ body:not(.home) .personal-links .contact-label {
   background: #000;
 }
 
-.album-covers:fullscreen img {
+.album-covers:fullscreen :is(img, canvas) {
   width: min(100vw, 100vh);
   height: min(100vw, 100vh);
   margin: auto;
@@ -570,14 +572,14 @@ body:not(.home) .personal-links .contact-label {
   filter: blur(var(--album-blur)) url("#album-sharpen");
 }
 
-.album-covers:fullscreen img.outgoing { --album-blur: 0px; }
+.album-covers:fullscreen .outgoing { --album-blur: 0px; }
 
 @media (hover: none) {
   .album-fullscreen { opacity: 1; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .album-covers:not(.is-playing) img,
+  .album-covers:not(.is-playing) :is(img, canvas),
   .album-covers::after,
   .album-fullscreen { transition: none; }
 }

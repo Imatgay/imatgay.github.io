@@ -75,10 +75,21 @@ async function showAlbumCovers(covers) {
       image.src = source;
       try {
         await image.decode();
-        return image;
       } catch {
         // Try the other size before skipping unavailable artwork.
+        continue;
       }
+      if (!cover.pixelated) return image;
+
+      const pixelated = document.createElement("canvas");
+      pixelated.width = pixelated.height = 8;
+      pixelated.setAttribute("role", "img");
+      pixelated.setAttribute("aria-label", cover.title);
+      const context = pixelated.getContext("2d");
+      if (!context) return null;
+      context.imageSmoothingQuality = "high";
+      context.drawImage(image, 0, 0, pixelated.width, pixelated.height);
+      return pixelated;
     }
     return null;
   }
