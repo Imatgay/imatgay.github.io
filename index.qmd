@@ -5,7 +5,7 @@ body-classes: home
 ::: {.home-presentation}
 Hi, I am Matteo!\
 
-I am a first-year PhD student at the [Center for Mind and Brain Sciences (CIMeC), University of Trento](https://www.cimec.unitn.it/en).\
+I am a first-year PhD student at the [Center for Mind and Brain Sciences (CIMeC), University of Trento](https://www.unitn.it/it/dottorati/cognitive-and-brain-sciences).\
 Previously, I got an Advanced MSc in AI from KULeuven and a MA in Linguistics (computational) from University of Pavia.\
 To know more about my background, check my [CV](https://drive.google.com/file/d/19AfbZedNDgMCVKHW731MVcd7uhnyCEy1/view?usp=sharing).
 
